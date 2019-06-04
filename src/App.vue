@@ -6,6 +6,16 @@
       <button v-on:click.prevent="buildUrl">find synonyms</button>
     </form>
     <h3>{{searchWord}}</h3>
+    <ul>
+      <li
+        v-for="(synonym, index) in searchResults"
+        v-bind:key="index"
+        v-on:click="newSyn"
+      >
+        {{synonym}}
+      </li>
+    </ul>
+    {{error}}
   </div>
 </template>
 
@@ -19,7 +29,9 @@ export default {
   },
   data: function() {
     return { 
-      searchWord: null 
+      searchWord: null,
+      searchResults: [],
+      error: ""
     }
   },
   methods: {
@@ -34,14 +46,19 @@ export default {
           throw Error (response.statusText)
         }
         const result = await response.json()
+        if(result.length === 0) {
+          return this.error = "Sorry we can't find synonyms for that word. Try another!"
+        }
         const synonyms = result[0].meta.syns.flat()
-        this.displayResults(synonyms)
+        this.searchResults = synonyms
       } catch (error) {
         console.log(error)
       }
     },
-    displayResults(synonyms) {
-      console.log(synonyms)
+    newSyn: function(e) {
+      const newWord = e.target.innerText
+      this.searchWord = newWord
+      this.buildUrl()
     }
   }
 }
