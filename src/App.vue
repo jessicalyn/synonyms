@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     buildUrl: function() {
+      this.error = ""
       const url = `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${this.searchWord}?key=c0ab8f16-fea9-482d-bc45-75a907b628b3`
       this.searchFetch(url)
     },
@@ -52,7 +53,7 @@ export default {
         const synonyms = result[0].meta.syns.flat()
         this.searchResults = synonyms
       } catch (error) {
-        console.log(error)
+        this.error = error.message
       }
     },
     newSyn: function(e) {
