@@ -4,6 +4,8 @@ Synonyms is a solo project to learn and implement Vue in 3 days. The app allows 
 
 Live on Heroku: https://synonyms-in-vue.herokuapp.com/
 
+![Screenshot](/public/screenshot.png)
+
 ## Project setup
 ```
 npm install
