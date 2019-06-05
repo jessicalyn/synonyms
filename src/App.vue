@@ -21,7 +21,6 @@
 
 <script>
 import Header from './components/Header.vue'
-import { apiKey } from '../apiKey'
 
 export default {
   name: 'app',
@@ -38,6 +37,8 @@ export default {
   methods: {
     buildUrl: function() {
       this.error = ""
+      const apiKey = process.env.VUE_APP_API_KEY
+      console.log(apiKey)
       const url = `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${this.searchWord}?key=${apiKey}`
       this.searchFetch(url)
     },
