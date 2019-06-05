@@ -1,6 +1,9 @@
 {
   "name": "synonyms",
   "version": "0.1.0",
+  "engines": {
+    "node": "11.3.0"
+  },
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
