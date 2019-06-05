@@ -48,13 +48,14 @@ export default {
           throw Error (response.statusText)
         }
         const result = await response.json()
-        if(result.length === 0) {
+        console.log(result[0].meta)
+        if(result[0].meta === undefined || result.length === 0) {
           return this.error = "Sorry we can't find synonyms for that word. Try another!"
         }
         const synonyms = result[0].meta.syns.flat()
         this.searchResults = synonyms
       } catch (error) {
-        this.error = error.message
+        console.log(error.message)
       }
     },
     newSyn: function(e) {
@@ -74,5 +75,60 @@ export default {
   color: #2c3e50;
   margin: 0;
   box-sizing: border-box;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center
+}
+
+input {
+  width: 50%;
+  height: 40px;
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+button {
+  width: 175px;
+  height: 46px;
+  background-color: #BC7032;
+  border: none;
+  color: #DBD9DA;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #DCB286;
+  color: #F1F1F1;
+  cursor: pointer
+}
+
+h3 {
+  text-align: center;
+  font-size: 30px;
+}
+
+ul {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0
+}
+
+li {
+  display: inline;
+  text-decoration: none;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+li:hover {
+  cursor: pointer;
 }
 </style>
